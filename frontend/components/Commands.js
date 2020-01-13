@@ -66,10 +66,10 @@ const Commands = () => {
           Land
         </button>
         {/* TODO: send whatever command here */}
-        <button className="led-on" onClick={sendCommand(`led on`)}>
+        <button className="led-on" onClick={() => socket.emit("led on")}>
           LED ON
         </button>
-        <button className="led-off" onClick={sendCommand(`led off`)}>
+        <button className="led-off" onClick={() => socket.emit("led off")}>
           LED OFF
         </button>
       </div>
