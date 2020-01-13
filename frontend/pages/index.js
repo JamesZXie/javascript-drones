@@ -1,7 +1,7 @@
-import DroneState from '../components/DroneState';
-import Commands from '../components/Commands';
+import DroneState from "../components/DroneState";
+import Commands from "../components/Commands";
 
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -30,7 +30,7 @@ const PageStyles = styled.div`
 
 const IndexPage = () => (
   <PageStyles>
-    <h2>JavaScript Drone</h2>
+    <h2>Drone controls</h2>
     <GlobalStyle />
     <Commands />
     <DroneState />

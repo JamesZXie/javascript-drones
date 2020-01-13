@@ -1,23 +1,23 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import socket from '../socket';
-import Battery from './Battery';
-import Tilt from './Tilt';
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+import socket from "../socket";
+import Battery from "./Battery";
+import Tilt from "./Tilt";
 
 function useDroneState() {
   const [droneState, updateDroneState] = useState({});
   useEffect(() => {
-    socket.on('dronestate', updateDroneState);
-    return () => socket.removeListener('dronestate');
+    socket.on("dronestate", updateDroneState);
+    return () => socket.removeListener("dronestate");
   }, []);
   return droneState;
 }
 
 function useSocket() {
-  const [status, updateStatus] = useState('DISCONNECTED');
+  const [status, updateStatus] = useState("DISCONNECTED");
   useEffect(() => {
-    socket.on('status', updateStatus);
-    return () => socket.removeListener('status');
+    socket.on("status", updateStatus);
+    return () => socket.removeListener("status");
   }, []);
   return status;
 }
