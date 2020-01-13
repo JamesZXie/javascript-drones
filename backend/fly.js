@@ -10,9 +10,6 @@ const PORT = 8889;
 const HOST = "192.168.10.1";
 const drone = dgram.createSocket("udp4");
 
-const five = require("johnny-five");
-const board = new five.Board();
-
 drone.bind(PORT);
 
 function parseState(state) {
@@ -42,28 +39,10 @@ function handleError(err) {
 
 drone.send("command", 0, "command".length, PORT, HOST, handleError);
 
-let led;
-board.on("ready", () => {
-  console.log("board ready");
-
-  led = new five.Led(11);
-});
-
 io.on("connection", socket => {
   console.log("Socket ready");
   socket.on("command", command => {
     drone.send(command, 0, command.length, PORT, HOST, handleError);
-  });
-
-  socket.on("led on", () => {
-    console.log("onnnnn");
-    led.on();
-  });
-
-  socket.on("led off", () => {
-    const led = new five.Led(11);
-    console.log("led off");
-    led.off();
   });
 
   socket.emit("status", "CONNECTED");
